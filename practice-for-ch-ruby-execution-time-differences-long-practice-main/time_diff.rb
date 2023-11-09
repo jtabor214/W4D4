@@ -12,22 +12,23 @@ class Array
         min #1
     end
 
-    def largest_contiguous_subsum # O(n^5)
-        result = self.sub_arrays # O(n^2) or 1
-        result.map!{|ele| ele.sum}.max # 0(n^3)
+    def largest_contiguous_subsum # O(n^3)
+        result = self.sub_arrays # O(n^3)
+        sums = result.map!{|ele| ele.sum} # O(n^2)
+        sums.max # O(n)
     end
 
-    def sub_arrays #O(n^2)
+    def sub_arrays #O(n^3)
         subs = [] #1
         (0...self.length).each do |i| #O(n)
             (i...self.length).each do |j| #O(n)
-                subs << self[i..j] #1
+                subs << self[i..j] #O(n)
             end
         end
         subs #1
     end
 
-    def largest_contiguous_subsum2
+    def largest_contiguous_subsum2 # O(n)
         max = self[0] # 1
         current = self[0] # 1
 
